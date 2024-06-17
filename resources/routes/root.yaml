@@ -1,0 +1,4 @@
+resource_1:
+  path: example.yaml
+  prefix: front
+  middleware: ['guest']

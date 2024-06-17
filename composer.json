@@ -1,0 +1,54 @@
+{
+    "name": "broswilli/laravel-yml-routes",
+    "description": "Create laravels routes by editing simple YAML Files",
+    "keywords": [
+        "broswilli",
+        "laravel-yml-routes"
+    ],
+    "homepage": "https://github.com/broswilli/laravel-yml-routes",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Weli Orlu",
+            "email": "broswilli@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.2",
+        "symfony/yaml": "^7.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.1",
+        "phpunit/phpunit": "^11.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Broswilli\\LaravelYmlRoutes\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Broswilli\\LaravelYmlRoutes\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Broswilli\\LaravelYmlRoutes\\LaravelYmlRoutesServiceProvider"
+            ],
+            "aliases": {
+                "LaravelYmlRoutes": "Broswilli\\LaravelYmlRoutes\\LaravelYmlRoutesFacade"
+            }
+        }
+    }
+}

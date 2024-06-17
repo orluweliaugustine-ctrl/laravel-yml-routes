@@ -1,0 +1,4 @@
+test_resource:
+  path: /test
+  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\SampleController, index]
+  methods: ['get']
