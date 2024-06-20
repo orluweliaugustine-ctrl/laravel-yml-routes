@@ -1,5 +1,4 @@
 <?php
 
 
-
-$route = \Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();
+\Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();

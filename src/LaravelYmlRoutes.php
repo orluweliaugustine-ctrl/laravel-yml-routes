@@ -29,7 +29,9 @@ class LaravelYmlRoutes
     private function createRoutesFromArray(array $yamlArray)
     {
         foreach($yamlArray as $key=>$value){
-            if(array_key_exists('path', $value)){
+            if(array_key_exists('file', $value) && array_key_exists('name', $value)){
+                $this->createPrefixedRouteName([$key => $value]);
+            }elseif(array_key_exists('file', $value)){
                 $this->createGroupedRoutes([$key => $value]);
             }else{
                 $this->createNormalRoutes([$key => $value]);
@@ -37,11 +39,23 @@ class LaravelYmlRoutes
         }
     }
 
+    private function createPrefixedRouteName(array $route)
+    {
+
+        $key = key($route);
+        $value = $route[$key];
+        $name = $value['name'];
+
+        Route::name($name.'.')->group(function() use($route){
+            $this->createGroupedRoutes($route);
+        });
+    }
+
     private function createGroupedRoutes(array $route)
     {
         $key = key($route);
         $value = $route[$key];
-        $yamlPath = $this->getPath($value['path']);
+        $yamlPath = $this->getPath($value['file']);
         $parsed = Yaml::parseFile($yamlPath);
         if(array_key_exists('prefix', $value) && array_key_exists('middleware', $value)){
             Route::prefix($value['prefix'])->group(function ()use($parsed, $value) {
@@ -57,6 +71,8 @@ class LaravelYmlRoutes
             Route::middleware($value['middleware'])->group(function ()use($parsed) {
                 $this->createRoutesFromArray($parsed);
             });
+        }else{
+            $this->createRoutesFromArray($parsed);
         }
     }
 
@@ -70,7 +86,15 @@ class LaravelYmlRoutes
             if(count($controller) > 1){
                 Route::$method($path, [$controller[0], $controller[1]])->name($name);
             }else{
-                Route::$method($path, $controller[0]);
+                
+                if($method === 'resource' || $method === 'apiResource'){
+                    Route::$method($path, $controller[0]);
+                }else{
+                    Route::name($name)->group(function() use ($path, $method, $controller){
+                        Route::$method($path, $controller[0]);
+                    });
+                }
+                
             }
         }
     }

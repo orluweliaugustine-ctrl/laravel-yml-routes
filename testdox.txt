@@ -1,0 +1,8 @@
+Yaml Routes (Broswilli\LaravelYmlRoutes\Tests\YamlRoutes)
+ [x] It creates routes from yaml
+ [x] It creates resource route from yaml
+ [x] It creates invokable controller route from yaml
+ [x] It creates prefixed route name
+ [x] It creates routes from root yml file
+ [x] It creates api resource route from yaml
+
