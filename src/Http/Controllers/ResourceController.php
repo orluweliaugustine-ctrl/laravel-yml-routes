@@ -27,7 +27,7 @@ class ResourceController
      */
     public function store(Request $request)
     {
-        if($request->input('sample')){
+        if ($request->input('sample')) {
             return redirect()->route('resc.index');
         }
     }
@@ -53,7 +53,7 @@ class ResourceController
      */
     public function update(Request $request, string $id)
     {
-        if($request->input('sample')){
+        if ($request->input('sample')) {
             return redirect()->route('resc.index');
         }
     }

@@ -28,12 +28,12 @@ class LaravelYmlRoutes
 
     private function createRoutesFromArray(array $yamlArray)
     {
-        foreach($yamlArray as $key=>$value){
-            if(array_key_exists('file', $value) && array_key_exists('name', $value)){
+        foreach ($yamlArray as $key => $value) {
+            if (array_key_exists('file', $value) && array_key_exists('name', $value)) {
                 $this->createPrefixedRouteName([$key => $value]);
-            }elseif(array_key_exists('file', $value)){
+            } elseif (array_key_exists('file', $value)) {
                 $this->createGroupedRoutes([$key => $value]);
-            }else{
+            } else {
                 $this->createNormalRoutes([$key => $value]);
             }
         }
@@ -46,7 +46,7 @@ class LaravelYmlRoutes
         $value = $route[$key];
         $name = $value['name'];
 
-        Route::name($name.'.')->group(function() use($route){
+        Route::name($name.'.')->group(function () use ($route) {
             $this->createGroupedRoutes($route);
         });
     }
@@ -57,21 +57,21 @@ class LaravelYmlRoutes
         $value = $route[$key];
         $yamlPath = $this->getPath($value['file']);
         $parsed = Yaml::parseFile($yamlPath);
-        if(array_key_exists('prefix', $value) && array_key_exists('middleware', $value)){
-            Route::prefix($value['prefix'])->group(function ()use($parsed, $value) {
-                Route::middleware($value['middleware'])->group(function () use($parsed) {
+        if (array_key_exists('prefix', $value) && array_key_exists('middleware', $value)) {
+            Route::prefix($value['prefix'])->group(function () use ($parsed, $value) {
+                Route::middleware($value['middleware'])->group(function () use ($parsed) {
                     $this->createRoutesFromArray($parsed);
                 });
             });
-        }elseif(array_key_exists('prefix', $value) && !array_key_exists('middleware', $value)){
-            Route::prefix($value['prefix'])->group(function ()use($parsed) {
+        } elseif (array_key_exists('prefix', $value) && !array_key_exists('middleware', $value)) {
+            Route::prefix($value['prefix'])->group(function () use ($parsed) {
                 $this->createRoutesFromArray($parsed);
             });
-        }elseif(array_key_exists('middleware', $value) && !array_key_exists('prefix', $value)){
-            Route::middleware($value['middleware'])->group(function ()use($parsed) {
+        } elseif (array_key_exists('middleware', $value) && !array_key_exists('prefix', $value)) {
+            Route::middleware($value['middleware'])->group(function () use ($parsed) {
                 $this->createRoutesFromArray($parsed);
             });
-        }else{
+        } else {
             $this->createRoutesFromArray($parsed);
         }
     }
@@ -82,19 +82,17 @@ class LaravelYmlRoutes
         $value = $route[$name];
         $path = $value['path'];
         $controller = $value['controller'];
-        foreach($value['methods'] as $method){
-            if(count($controller) > 1){
+        foreach ($value['methods'] as $method) {
+            if (count($controller) > 1) {
                 Route::$method($path, [$controller[0], $controller[1]])->name($name);
-            }else{
-                
-                if($method === 'resource' || $method === 'apiResource'){
+            } else {
+                if ($method === 'resource' || $method === 'apiResource') {
                     Route::$method($path, $controller[0]);
-                }else{
-                    Route::name($name)->group(function() use ($path, $method, $controller){
+                } else {
+                    Route::name($name)->group(function () use ($path, $method, $controller) {
                         Route::$method($path, $controller[0]);
                     });
                 }
-                
             }
         }
     }
@@ -104,13 +102,12 @@ class LaravelYmlRoutes
         $yamlPath = '';
         $baseDir = Config::get('laravel-yml-routes.routes_dir');
         
-        if($file){
+        if ($file) {
             $yamlPath = $baseDir.$file;
-        }else{
+        } else {
             $yamlPath = $baseDir.'root.yaml';
         }
 
         return $yamlPath;
     }
-
 }
