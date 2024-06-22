@@ -22,22 +22,8 @@ class LaravelYmlRoutesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('laravel-yml-routes.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-yml-routes'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/laravel-yml-routes'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-yml-routes'),
-            ], 'lang');*/
+                __DIR__.'/../resources/routes' => resource_path('routes'),
+            ], 'laravel-yml-routes-config');
 
             // Registering package commands.
             // $this->commands([]);

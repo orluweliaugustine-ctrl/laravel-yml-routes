@@ -1,4 +1,0 @@
-admin-index:
-  path: /
-  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\AdminController, index]
-  methods: ['get']
