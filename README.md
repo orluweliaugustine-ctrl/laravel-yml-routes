@@ -36,12 +36,35 @@ admin_org:
   controller: [Adapt\SchAdmin\Http\Controllers\Administration\OrganizationController]
   methods: ['resource']
 ```
-
-## Usage
+Output routes in the routes.php file
 
 ```php
-// Usage description here
+\Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();
 ```
+## Usage
+
+Edit the root YAML file
+
+```YAML
+resource_1:
+  file: example.yaml
+  prefix: front
+  middleware: ['auth', 'can:isAdmin', auth]
+resource_2:
+  file: example2.yaml
+  prefix: admin,
+  name: admin
+  middleware: ['guest']
+resource_3:
+  path: /root-test
+  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\SampleController, index]
+  methods: ['get']
+resource_4:
+  path: /root-invoke
+  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\InvokableController]
+  methods: ['get']
+```
+From the YAML above the root nodes resource_1 and resource_2 points to other yaml files that describes a group of routes. The root nodes reesource_3 and resource_4 creates 2 new routes with url http://example.com/root-test and http://example.com/root-invoke. 
 
 ### Testing
 
