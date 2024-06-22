@@ -5,6 +5,7 @@ namespace Broswilli\LaravelYmlRoutes\Tests;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Route;
 use Broswilli\LaravelYmlRoutes\LaravelYmlRoutesServiceProvider;
+use Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade;
 
 class YamlRoutesTest extends TestCase   
 {

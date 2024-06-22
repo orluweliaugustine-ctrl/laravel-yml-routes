@@ -12,7 +12,10 @@ class LaravelYmlRoutes
 
     public function __construct()
     {
-        $this->rootYamlFile = Config::get('laravel-yml-routes.routes_dir').'root.yaml';
+        $rootFileName = Config::get('laravel-yml-routes.root_file_name');
+
+        $this->rootYamlFile = Config::get('laravel-yml-routes.routes_dir').$rootFileName;
+        
     }
 
     public function createRoutes()
@@ -105,7 +108,7 @@ class LaravelYmlRoutes
         if ($file) {
             $yamlPath = $baseDir.$file;
         } else {
-            $yamlPath = $baseDir.'root.yaml';
+            $yamlPath = $baseDir.$this->rootYamlFile.'.yaml';
         }
 
         return $yamlPath;

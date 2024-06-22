@@ -5,5 +5,5 @@
  */
 return [
     'routes_dir' => __DIR__.'/../resources/routes/',
-    'root' => __DIR__.'/../resources/routes/root.yaml',
+    'root_file_name' => 'root.yaml',
 ];

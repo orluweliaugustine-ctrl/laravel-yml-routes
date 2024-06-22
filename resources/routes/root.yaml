@@ -2,16 +2,3 @@ resource_1:
   file: example.yaml
   prefix: front
   middleware: ['guest']
-resource_2:
-  file: example2.yaml
-  prefix: admin,
-  name: admin
-  middleware: ['guest']
-resource_3:
-  path: /root-test
-  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\SampleController, index]
-  methods: ['get']
-resource_4:
-  path: /root-invoke
-  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\InvokableController]
-  methods: ['get']
