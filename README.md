@@ -1,10 +1,10 @@
-# Very short description of the package
+# Laravel YAML Routes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/broswilli/laravel-yml-routes.svg?style=flat-square)](https://packagist.org/packages/broswilli/laravel-yml-routes)
 [![Total Downloads](https://img.shields.io/packagist/dt/broswilli/laravel-yml-routes.svg?style=flat-square)](https://packagist.org/packages/broswilli/laravel-yml-routes)
 ![GitHub Actions](https://github.com/broswilli/laravel-yml-routes/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package is created for Laravel Developers to create routes using YAML files. This package makes it easy for many routes to be created and arranged with well organized prefixes and middleware.
 
 ## Installation
 
@@ -12,6 +12,29 @@ You can install the package via composer:
 
 ```bash
 composer require broswilli/laravel-yml-routes
+```
+
+You can publish configuration files
+
+```bash
+php artisan vendor:publish --tag laravel-yml-routes-config
+```
+
+Edit the Root YAML File:
+
+```YAML
+resource_1:
+  file: admin.yaml
+  prefix: admin
+  middleware: ['can:isAdmin']
+```
+Create the admin.yaml file in the same directory
+
+```YAML
+admin_org:
+  path: /org
+  controller: [Adapt\SchAdmin\Http\Controllers\Administration\OrganizationController]
+  methods: ['resource']
 ```
 
 ## Usage
