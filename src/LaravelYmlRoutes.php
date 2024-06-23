@@ -23,6 +23,11 @@ class LaravelYmlRoutes
         $this->processYamlFileToRoute();
     }
 
+    public function setRootYamlFile($rootFileName)
+    {
+        $this->rootYamlFile = Config::get('laravel-yml-routes.routes_dir').$rootFileName;
+    }
+
     private function processYamlFileToRoute()
     {
         $parsed = Yaml::parseFile($this->rootYamlFile);

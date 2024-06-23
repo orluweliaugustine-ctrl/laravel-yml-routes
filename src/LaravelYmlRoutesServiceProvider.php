@@ -17,7 +17,11 @@ class LaravelYmlRoutesServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-yml-routes');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-yml-routes');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        if (app()->environment() == 'testing'){
+            $this->loadRoutesFrom(__DIR__.'/routes.php');
+        }
+        
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
