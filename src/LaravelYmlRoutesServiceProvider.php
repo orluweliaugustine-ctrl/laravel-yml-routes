@@ -11,14 +11,8 @@ class LaravelYmlRoutesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-yml-routes');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-yml-routes');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        if (app()->environment() == 'testing'){
+        if (app()->environment() == 'testing') {
             $this->loadRoutesFrom(__DIR__.'/routes.php');
         }
         
@@ -28,9 +22,6 @@ class LaravelYmlRoutesServiceProvider extends ServiceProvider
                 __DIR__.'/../config/config.php' => config_path('laravel-yml-routes.php'),
                 __DIR__.'/../resources/routes' => resource_path('routes'),
             ], 'laravel-yml-routes-config');
-
-            // Registering package commands.
-            // $this->commands([]);
         }
     }
 

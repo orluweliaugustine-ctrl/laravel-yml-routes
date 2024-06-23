@@ -15,7 +15,6 @@ class LaravelYmlRoutes
         $rootFileName = Config::get('laravel-yml-routes.root_file_name');
 
         $this->rootYamlFile = Config::get('laravel-yml-routes.routes_dir').$rootFileName;
-        
     }
 
     public function createRoutes()
