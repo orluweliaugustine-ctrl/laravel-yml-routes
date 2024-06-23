@@ -64,9 +64,10 @@ resource_4:
   controller: [Adapt\SchAdmin\Http\Controllers\InvokableController]
   methods: ['get']
 ```
-From the YAML above the root nodes resource_1 and resource_2 points to other yaml files that describes a group of routes. The root nodes reesource_3 and resource_4 creates 2 new routes with url example.com/root-test and example.com/root-invoke. 
+From the YAML above the root nodes resource_1 and resource_2 points to other yaml files that describes a group of routes. The root nodes resource_3 and resource_4 creates 2 new routes with url example.com/root-test and example.com/root-invoke. 
 
 example.yaml
+
 ```yaml
 test_resource:
   path: /test
@@ -101,8 +102,40 @@ The front prefix and the middleware was defined in the root.yaml file
   - Route Names(s): resc.index, resc.store, resc.create, resc.show, resc.edit, resc.update, resc.destroy
   - Methods: GET, POST, PUT, DELETE
   - Controller Class: Adapt\SchAdmin\Http\Controllers\ResourceController
+- test_resource_3: This is similar to test_resource_2 suitable for restful API's. It comes without routes for the create, and edit actions which are not needed for restfull API's
+- test_invokable: A controller that has the __invoke method or a single action controller. You can create the route without stating the action
     
-Please visit https://laravel.com/docs/11.x/controllers#resource-controllers to know more about resource controllers.
+Please visit https://laravel.com/docs/11.x/controllers#resource-controllers to know more about resource controllers. 
+
+Visit https://laravel.com/docs/11.x/controllers#api-resource-routes to know more about API Resource.  
+
+Visit https://laravel.com/docs/11.x/controllers#single-action-controllers to know more about single action controllers
+
+#### Route Prefixes
+The example2.yaml is used to demonstrate route prefixes. In the root.yaml file it was referenced as follows:
+```yaml
+resource_2:
+  file: example2.yaml
+  prefix: admin,
+  name: admin
+  middleware: ['guest']
+```
+example2.yaml
+
+```yaml
+admin-index:
+  path: /
+  controller: [Adapt\SchAdmin\Http\Controllers\AdminController, index]
+  methods: ['get']
+```
+The root.yaml file where the example2 routes were defined has a node with a key of name. The function of the name node is to create route name prefix.
+- admin-index
+  - Route Name(s): admin.admin-index
+  - Method(s): GET
+  - Controller Class: Adapt\SchAdmin\Http\Controllers\AdminController
+  - Action: index
+
+Notice that the Route Name is admin.admin-index instead of admin-index because of the name node defined in the root.yaml file
 
 ### Testing
 
