@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/broswilli/laravel-yml-routes.svg?style=flat-square)](https://packagist.org/packages/broswilli/laravel-yml-routes)
 [![Total Downloads](https://img.shields.io/packagist/dt/broswilli/laravel-yml-routes.svg?style=flat-square)](https://packagist.org/packages/broswilli/laravel-yml-routes)
-![GitHub Actions](https://github.com/broswilli/laravel-yml-routes/actions/workflows/main.yml/badge.svg)
+
 
 This package is created for Laravel Developers to create routes using YAML files. This package makes it easy for many routes to be created and arranged with well organized prefixes and middleware.
 
