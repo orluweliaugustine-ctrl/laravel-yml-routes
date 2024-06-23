@@ -14,38 +14,38 @@ You can install the package via composer:
 composer require broswilli/laravel-yml-routes
 ```
 
-You can publish configuration files
+#### You can publish configuration files
 
 ```bash
 php artisan vendor:publish --tag laravel-yml-routes-config
 ```
 
-Edit the Root YAML File:
+#### Edit the Root YAML File:
 
-```YAML
+```yaml
 resource_1:
   file: admin.yaml
   prefix: admin
   middleware: ['can:isAdmin']
 ```
-Create the admin.yaml file in the same directory
+Create a yaml file of choice for the sake of this example create admin.yaml file in the same directory as the root.yaml file
 
-```YAML
+```yaml
 admin_org:
   path: /org
   controller: [Adapt\SchAdmin\Http\Controllers\Administration\OrganizationController]
   methods: ['resource']
 ```
-Output routes in the routes.php file
+#### Output routes in the routes.php file
 
 ```php
 \Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();
 ```
 ## Usage
 
-Edit the root YAML file
+#### Edit the root YAML file
 
-```YAML
+```yaml
 resource_1:
   file: example.yaml
   prefix: front
@@ -57,14 +57,52 @@ resource_2:
   middleware: ['guest']
 resource_3:
   path: /root-test
-  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\SampleController, index]
+  controller: [Adapt\SchAdmin\Http\Controllers\SampleController, index]
   methods: ['get']
 resource_4:
   path: /root-invoke
-  controller: [Broswilli\LaravelYmlRoutes\Http\Controllers\InvokableController]
+  controller: [Adapt\SchAdmin\Http\Controllers\InvokableController]
   methods: ['get']
 ```
-From the YAML above the root nodes resource_1 and resource_2 points to other yaml files that describes a group of routes. The root nodes reesource_3 and resource_4 creates 2 new routes with url http://example.com/root-test and http://example.com/root-invoke. 
+From the YAML above the root nodes resource_1 and resource_2 points to other yaml files that describes a group of routes. The root nodes reesource_3 and resource_4 creates 2 new routes with url example.com/root-test and example.com/root-invoke. 
+
+example.yaml
+```yaml
+test_resource:
+  path: /test
+  controller: [Adapt\SchAdmin\Http\Controllers\SampleController, index]
+  methods: ['get']
+test_resource_2:
+  path: /resc
+  controller: [Adapt\SchAdmin\Http\Controllers\ResourceController]
+  methods: ['resource']
+test_resource_3:
+  path: /api
+  controller: [Adapt\SchAdmin\Http\Controllers\ResourceController]
+  methods: ['apiResource']
+test_invokable:
+  path: /invoke
+  controller: [Adapt\SchAdmin\Http\Controllers\InvokableController]
+  methods: ['get']
+```
+All urls from example.yaml will have a prefix of front and a common middleware of 'can:isAdmin' applied:
+- example.com/front/test
+- example.com/front/invoke
+
+The front prefix and the middleware was defined in the root.yaml file
+
+#### Route Names and Methods
+- test_resource
+  - Route Name(s): test_resource
+  - Method(s): GET
+  - Controller Class: Adapt\SchAdmin\Http\Controllers\SampleController
+  - Action: index
+- test_resource_2
+  - Route Names(s): resc.index, resc.store, resc.create, resc.show, resc.edit, resc.update, resc.destroy
+  - Methods: GET, POST, PUT, DELETE
+  - Controller Class: Adapt\SchAdmin\Http\Controllers\ResourceController
+    
+Please visit https://laravel.com/docs/11.x/controllers#resource-controllers to know more about resource controllers.
 
 ### Testing
 
