@@ -9,4 +9,4 @@ clover.xml
 coverage.txt
 html-coverage
 xml-coverage
-resources/routes/example*.yaml
+
