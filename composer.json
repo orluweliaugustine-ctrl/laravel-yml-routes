@@ -1,17 +1,17 @@
 {
-    "name": "broswilli/laravel-yml-routes",
+    "name": "orluweliaugustine-ctrl/laravel-yml-routes",
     "description": "Create laravels routes by editing simple YAML Files",
     "keywords": [
         "broswilli",
         "laravel-yml-routes"
     ],
-    "homepage": "https://github.com/broswilli/laravel-yml-routes",
+    "homepage": "https://github.com/orluweliaugustine-ctrl/laravel-yml-routes",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "Weli Orlu",
-            "email": "broswilli@gmail.com",
+            "email": "orluweliaugustine@gmail.com",
             "role": "Developer"
         }
     ],

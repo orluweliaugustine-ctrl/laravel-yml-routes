@@ -11,7 +11,7 @@ This package is created for Laravel Developers to create routes using YAML files
 You can install the package via composer:
 
 ```bash
-composer require broswilli/laravel-yml-routes
+composer require orluweliaugustine-ctrl/laravel-yml-routes
 ```
 
 #### You can publish configuration files
@@ -39,7 +39,7 @@ admin_org:
 #### Output routes in the routes.php file
 
 ```php
-\Broswilli\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();
+\Orluweliaugustine-ctrl\LaravelYmlRoutes\LaravelYmlRoutesFacade::createRoutes();
 ```
 ## Usage
 
@@ -157,7 +157,7 @@ If you discover any security related issues, please email broswilli@gmail.com in
 
 ## Credits
 
--   [Weli Orlu](https://github.com/broswilli)
+-   [Weli Orlu](https://github.com/orluweliaugustine-ctrl)
 -   [All Contributors](../../contributors)
 
 ## License

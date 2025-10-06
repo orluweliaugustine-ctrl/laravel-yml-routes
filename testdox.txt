@@ -1,4 +1,4 @@
-Yaml Routes (Broswilli\LaravelYmlRoutes\Tests\YamlRoutes)
+Yaml Routes (Orluweliaugustine-ctrl\LaravelYmlRoutes\Tests\YamlRoutes)
  [x] It creates routes from yaml
  [x] It creates resource route from yaml
  [x] It creates invokable controller route from yaml
